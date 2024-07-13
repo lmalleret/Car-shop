@@ -4,6 +4,10 @@
 Aplicación web para gestionar una tienda de autos.
 
 
+## Features
+
+- CRUD de autos
+- Login de usuarios
 
 
 ## Tech Stack
@@ -39,3 +43,7 @@ Para ejecutar la aplicación
   npm run dev
 ```
 
+## Screenshots
+
+![App Screenshot](./screenshot-login.png)
+![App Screenshot](./screenshot-main.png)
