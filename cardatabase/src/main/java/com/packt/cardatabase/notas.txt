@@ -1,0 +1,43 @@
+En caso de una relación muchos a muchos la configuración de las entidades sería la siguiente:
+
+// Car.java
+@ManyToMany(mappedBy="cars")
+private Set<Owner> owners = new HashSet<Owner>();
+public Set<Owner> getOwners() {
+ return owners;
+}
+public void setOwners(Set<Owner> owners) {
+ this.owners = owners;
+}
+
+// Owner.java
+@ManyToMany(cascade=CascadeType.PERSIST)
+@JoinTable(name="car_owner",joinColumns = 
+ {
+ @JoinColumn(name="ownerid") },
+ inverseJoinColumns = 
+ {
+ @JoinColumn(name="id") }
+)
+private Set<Car> cars = new HashSet<Car>();
+public Set<Car> getCars() {
+ return cars;
+}
+public void setCars(Set<Car> cars) {
+ this.cars = cars;
+}
+
+
+@RepositoryRestResource(path="vehicles") --> sirve para cambiar el nombre del path en SD Rest
+
+Spring Security provides the @PreAuthorize, @PostAuthorize, @PreFilter, @PostFilter, and 
+@Secured annotations, which are used to apply method-level security.
+
+The @PreAuthorize annotation replaces the @Secured annotation, and its use is recommended 
+instead.
+The @PostAuthorize annotation can be used to check authorization after the method is executed. 
+You can use this, for example, to check that the user has permission to access the object that the 
+method returns, or you can filter the data returned based on the user’s authorization.
+The @PreFilter and @PostFilter annotations can be used to filter lists of objects, but they are 
+not typically used for role-based access control. The rules used with these annotations are more 
+fine-grained.
